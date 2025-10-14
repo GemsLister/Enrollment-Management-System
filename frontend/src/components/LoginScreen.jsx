@@ -17,7 +17,7 @@ export const LoginScreen = () => {
             alt="department-head-img"
             className="laptop:w-[180px] desktop:w-[260px]"
           />
-          <Link to="/login/department_head" state={{ role: "officer" }}>
+          <Link to="/login/department_head" state={{ role: "department_head" }}>
             <button className="p-3 bg-muted-gold laptop:text-[16px] desktop:text-[28px] laptop:w-[185px] desktop:w-[310px] rounded-[10px] cursor-pointer">
               Department Head
             </button>
