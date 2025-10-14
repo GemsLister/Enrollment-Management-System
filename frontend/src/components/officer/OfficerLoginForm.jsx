@@ -1,10 +1,26 @@
-import { Link } from "react-router";
+import { Link, Outlet, useNavigate } from "react-router";
 import EmailIcon from "../../assets/email.png";
 import PasswordIcon from "../../assets/password.png";
 import googleLogo from "../../assets/googleLogo.png";
 import facebookLogo from "../../assets/facebookLogo.png";
+import { useLoginResult } from "../../hooks/useLoginResult";
 
 export const OfficerLoginForm = () => {
+  const { loginResult, success, error } = useLoginResult();
+
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await loginResult({ ...form });
+  };
+
   return (
     <div className="flex flex-col items-center gap-5">
       <div>
@@ -43,9 +59,11 @@ export const OfficerLoginForm = () => {
             />
           </div>
 
-          <button className="p-3 rounded-[10px] bg-muted-gold text-warm-white cursor-pointer">
-            Login
-          </button>
+          <Link>
+            <button className="p-3 rounded-[10px] bg-muted-gold text-warm-white cursor-pointer">
+              Login
+            </button>
+          </Link>
         </div>
 
         {/* Alternative logins */}
