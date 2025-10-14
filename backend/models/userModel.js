@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const signUpSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -16,8 +16,12 @@ const signUpSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    role: {
+      type: String,
+      enum: ["officer", "department_head"],
+    },
   },
   { timestamps: true }
 );
 
-export default mongoose.model('SignUp', signUpSchema);
+export default mongoose.model("User", userSchema);

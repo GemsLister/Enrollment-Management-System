@@ -4,7 +4,9 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import "./index.css";
 import App from "./App.jsx";
 import { OfficerLogin } from "./components/officer/OfficerLogin.jsx";
-import { OfficerSignUp } from "./components/officer/officerSignUp.jsx";
+import { OfficerSignUp } from "./components/officer/OfficerSignUp.jsx";
+import { HeadLogin } from "./components/department_head/HeadLogin.jsx";
+import { HeadSignUp } from "./components/department_head/HeadSignUp.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,12 +14,20 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/officerSignUp",
+    path: "/signup/officer",
     element: <OfficerSignUp />,
   },
   {
-    path: "/officerLogin",
+    path: "/login/officer",
     element: <OfficerLogin />,
+  },
+  {
+    path: "/signup/department_head",
+    element: <HeadSignUp />,
+  },
+  {
+    path: "/login/department_head",
+    element: <HeadLogin />,
   },
 ]);
 

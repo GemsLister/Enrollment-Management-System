@@ -5,9 +5,9 @@ import PasswordIcon from "../../assets/password.png";
 import { useSignUp } from "../../hooks/useSignUp";
 import { useState } from "react";
 
-export const SignUpForm = () => {
+export const HeadSignUpForm = () => {
   const location = useLocation();
-  const role = location.state?.role || "officer";
+  const role = location.state?.role || "department_head";
 
   const [form, setForm] = useState({
     username: "",
@@ -80,14 +80,14 @@ export const SignUpForm = () => {
             />
           </div>
 
-          <button className="p-3 rounded-[10px] bg-muted-gold text-warm-white">
+          <button className="p-3 rounded-[10px] bg-muted-gold w-[100%] text-warm-white cursor-pointer">
             Sign Up
           </button>
         </div>
         <div className="flex justify-center">
           <p className="laptop:text-[14px]">
             Already have an account?{" "}
-            <Link to="/login/officer" className="text-muted-gold">
+            <Link to="/login/department_head" className="text-muted-gold">
               Login
             </Link>
           </p>

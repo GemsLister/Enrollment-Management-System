@@ -72,8 +72,8 @@ export const LoginForm = () => {
             <p className="laptop:text-[14px] desktop:text-[20px]">
               Don't have an account yet?{" "}
               <Link
-                to="/signup/officer"
-                state={{ role: "officer" }}
+                to="/signup/department_head"
+                state={{ role: "department_head" }}
                 className="text-muted-gold"
               >
                 Sign Up

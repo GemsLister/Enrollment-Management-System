@@ -11,15 +11,17 @@ export const LoginScreen = () => {
 
       <div className="flex gap-[10rem]">
         {/* For Department Head Type  */}
-        <div className="flex flex-col items-center gap-3 desktop:w-[260px]">
+        <div className="flex flex-col items-center gap-3">
           <img
             src={AvatarHead}
             alt="department-head-img"
             className="laptop:w-[180px] desktop:w-[260px]"
           />
-          <button className="p-3 bg-muted-gold laptop:text-[16px] desktop:text-[28px] laptop:w-[185px] desktop:w-[310px] rounded-[10px]">
-            Department Head
-          </button>
+          <Link to="/login/department_head" state={{ role: "officer" }}>
+            <button className="p-3 bg-muted-gold laptop:text-[16px] desktop:text-[28px] laptop:w-[185px] desktop:w-[310px] rounded-[10px] cursor-pointer">
+              Department Head
+            </button>
+          </Link>
         </div>
         {/* For Enrollment Officer Type  */}
         <div className="flex flex-col items-center gap-3">
@@ -28,7 +30,7 @@ export const LoginScreen = () => {
             alt="enrollment-officer-img"
             className="laptop:w-[180px] desktop:w-[260px]"
           />
-          <Link to="/officerSignUp">
+          <Link to="/login/officer" state={{ role: "officer" }}>
             <button className="p-3 bg-muted-gold laptop:text-[16px] desktop:text-[28px] laptop:w-[185px] desktop:w-[310px] rounded-[10px] cursor-pointer">
               Enrollment Officer
             </button>
