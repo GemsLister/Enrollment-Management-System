@@ -1,6 +1,6 @@
-import { GreetingsSignUp } from "./Greetings";
-import { SignUpForm } from "./SignUpForm";
-import { OfficerAvatar } from "./Avatar";
+import { GreetingsSignUp } from "./OfficerGreetings";
+import { SignUpForm } from "../officer/OfficerSignUpForm";
+import { OfficerAvatar } from "./OfficerAvatar";
 
 export const OfficerSignUp = () => {
   return (
