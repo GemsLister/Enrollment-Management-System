@@ -1,6 +1,6 @@
-import { GreetingsSignUp } from "../department_head/Greetings";
+import { GreetingsSignUp } from "../department_head/HeadGreetings";
 import { HeadSignUpForm } from "./HeadSignUpForm";
-import { HeadAvatar } from "../department_head/Avatar";
+import { HeadAvatar } from "./HeadAvatar";
 
 export const HeadSignUp = () => {
   return (

@@ -4,7 +4,7 @@ import PasswordIcon from "../../assets/password.png";
 import googleLogo from "../../assets/googleLogo.png";
 import facebookLogo from "../../assets/facebookLogo.png";
 
-export const LoginForm = () => {
+export const HeadLoginForm = () => {
   return (
     <div className="flex flex-col items-center gap-5">
       <div>
