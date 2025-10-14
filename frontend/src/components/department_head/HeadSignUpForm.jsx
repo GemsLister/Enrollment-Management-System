@@ -2,8 +2,10 @@ import { Link, useLocation } from "react-router";
 import UsernameIcon from "../../assets/username.png";
 import EmailIcon from "../../assets/email.png";
 import PasswordIcon from "../../assets/password.png";
+import Successful from "../../assets/successful.svg";
+import Failed from "../../assets/failed.svg";
 import { useSignUp } from "../../hooks/useSignUp";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const HeadSignUpForm = () => {
   const location = useLocation();
@@ -25,8 +27,18 @@ export const HeadSignUpForm = () => {
   return (
     <div className="flex flex-col items-center gap-5">
       <div>
-        {success && <p>Sign up successful!</p>}
-        {error && <p>Sign up unsuccessful!</p>}
+        {success && (
+          <div className="flex justify-center p-3 gap-[7px] w-100">
+            <img src={Successful} alt="success-sign-up" />
+            <p className="text-ocean-green">Successful Registration!</p>
+          </div>
+        )}
+        {error && (
+          <div className="flex justify-center p-3 gap-[7px] w-100">
+            <img src={Failed} alt="unsuccess-sign-up" />
+            <p className="text-brick-red">Registration failed!</p>
+          </div>
+        )}
       </div>
       <div>
         <h1 className="text-deep-navy-blue font-bold laptop:text-[30px] desktop:text-[45px] laptop:w-[25rem] desktop:w-[35rem]">
