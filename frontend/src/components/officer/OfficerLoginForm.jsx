@@ -1,4 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router";
+import { useState } from "react";
 import EmailIcon from "../../assets/email.png";
 import PasswordIcon from "../../assets/password.png";
 import googleLogo from "../../assets/googleLogo.png";
@@ -6,19 +7,19 @@ import facebookLogo from "../../assets/facebookLogo.png";
 import { useLoginResult } from "../../hooks/useLoginResult";
 
 export const OfficerLoginForm = () => {
-  const { loginResult, success, error } = useLoginResult();
-
+  const navigate = useNavigate();
+  const loginResult = useLoginResult();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    await loginResult({ ...form });
+  const handleLogin = async () => {
+    const { success, error } = await loginResult(form);
+    if (success) navigate("/officer_dashboard");
+    else if (error) {
+      navigate("/login/officer");
+    }
   };
 
   return (
@@ -28,10 +29,13 @@ export const OfficerLoginForm = () => {
           LOGIN
         </h1>
       </div>
-
+      <div>
+        <Outlet />
+      </div>
       <form
         action=""
         className="flex flex-col laptop:w-[25rem] desktop:w-[34.5rem] gap-7 laptop:text-[14px] desktop:text-[20px]"
+        onSubmit={handleLogin}
       >
         <div className="flex flex-col gap-5">
           <div className="flex gap-3 p-2 w-full border-0 border-b-1 border-slate-gray">
@@ -44,6 +48,7 @@ export const OfficerLoginForm = () => {
               type="text"
               placeholder="Email"
               className="w-full border-0 focus:outline-none"
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
           </div>
           <div className="flex gap-3 p-2 w-full border-0 border-b-1 border-slate-gray">
@@ -56,11 +61,12 @@ export const OfficerLoginForm = () => {
               type="password"
               placeholder="Password"
               className="w-full border-0 focus:outline-none"
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
           </div>
 
-          <Link>
-            <button className="p-3 rounded-[10px] bg-muted-gold text-warm-white cursor-pointer">
+          <Link to="/officer_dashboard">
+            <button className="p-3 rounded-[10px] bg-muted-gold w-full text-warm-white cursor-pointer">
               Login
             </button>
           </Link>
