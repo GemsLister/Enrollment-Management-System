@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate, Outlet } from "react-router";
 import UsernameIcon from "../../assets/username.png";
 import EmailIcon from "../../assets/email.png";
 import PasswordIcon from "../../assets/password.png";
@@ -8,6 +8,7 @@ import { useSignUp } from "../../hooks/useSignUp";
 import { useState } from "react";
 
 export const SignUpForm = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const role = location.state?.role || "officer";
 
@@ -22,24 +23,13 @@ export const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup({ ...form, role });
+    if (success) navigate("/login/officer");
+    else if (error) navigate("/signup/officer");
   };
 
   return (
     <div className="flex flex-col items-center gap-5">
-      <div>
-        {success && (
-          <div className="flex justify-center p-3 gap-[7px] w-100">
-            <img src={Successful} alt="success-sign-up" />
-            <p className="text-ocean-green">Successful Registration!</p>
-          </div>
-        )}
-        {error && (
-          <div className="flex justify-center p-3 gap-[7px] w-100">
-            <img src={Failed} alt="unsuccess-sign-up" />
-            <p className="text-brick-red">Registration failed!</p>
-          </div>
-        )}
-      </div>
+      <Outlet />
       <div>
         <h1 className="text-deep-navy-blue font-bold laptop:text-[30px] desktop:text-[45px] laptop:w-[25rem] desktop:w-[35rem]">
           SIGN UP
@@ -88,7 +78,7 @@ export const SignUpForm = () => {
               type="password"
               placeholder="Password"
               className="w-full border-0 focus:outline-none"
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
           </div>
 
