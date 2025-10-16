@@ -2,6 +2,12 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 
+export const tokenGenerate = () => {
+  return jwt.sign({ id, email }, process.env.TOKEN_SECRET_KEY, {
+    expiresIn: process.env.TOKEN_EXPIRE_KEY,
+  });
+};
+
 export const protect = asyncHandler(async (req, res, next) => {
   let token;
   if (
