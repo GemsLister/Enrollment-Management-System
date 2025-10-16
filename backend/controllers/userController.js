@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { tokenGenerate } from "../middleware/auth.js";
 
 export const setSignUp = async (req, res) => {
   // Saving an account
@@ -40,16 +40,18 @@ export const setLogin = async (req, res) => {
   if (!matchPassword)
     return res.status(404).json({ message: "Incorrect Password" });
 
-  const token = jwt.sign(
-    {
-      id: user._id,
-      email: user.email,
-    },
-    process.env.TOKEN_SECRET_KEY,
-    {
-      expiresIn: process.env.TOKEN_EXPIRE_KEY,
-    }
-  );
+  tokenGenerate();
+
+  // const token = jwt.sign(
+  //   {
+  //     id: user._id,
+  //     email: user.email,
+  //   },
+  //   process.env.TOKEN_SECRET_KEY,
+  //   {
+  //     expiresIn: process.env.TOKEN_EXPIRE_KEY,
+  //   }
+  // );
 
   res.status(200).json({ message: "Login Successful", token });
 };
