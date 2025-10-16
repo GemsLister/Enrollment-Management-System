@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { OfficerLogin } from "./components/officer/OfficerLogin.jsx";
 import { OfficerSignUp } from "./components/officer/OfficerSignUp.jsx";
-import { OfficerDashboard } from "./components/officer/OfficerDashboard.jsx";
+import { OfficerDashboard } from "./components/officer/officer_dashboard/OfficerDashboard.jsx";
 import { HeadLogin } from "./components/department_head/HeadLogin.jsx";
 import { HeadSignUp } from "./components/department_head/HeadSignUp.jsx";
 
@@ -36,6 +36,10 @@ const router = createBrowserRouter([
     path: "/login/department_head",
     element: <HeadLogin />,
   },
+  {
+    path: "/officer_dashboard",
+    element: <OfficerDashboard />,
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
